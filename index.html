@@ -89,7 +89,8 @@
                     </div>
                 </div>
 
-                <div class="grid-2" style="display:none;"> <input type="number" id="daily_rate" value="850">
+                <div class="grid-2" style="display:none;"> 
+                    <input type="number" id="daily_rate" value="850">
                     <input type="number" id="hourly_rate" value="110">
                 </div>
 
@@ -105,10 +106,10 @@
                 <h3>V3 & V4: Veredelung (Optionale Etappen)</h3>
                 <div class="grid-2">
                     <div>
-                        <div class="checkbox-group"><input type="checkbox" id="color_grading"> <label>Professionelles Color Grading (+200€)</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="color_grading"> <label>Professionelles Color Grading (+120€)</label></div>
                     </div>
                     <div>
-                        <div class="checkbox-group"><input type="checkbox" id="captions"> <label>Optimierte Untertitel / Captions (+120€)</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="captions"> <label>Optimierte Untertitel / Captions (+80€)</label></div>
                     </div>
                 </div>
 
@@ -152,8 +153,8 @@
             let v2Total = editHours * hourlyRate;
 
             // Kalkulation V3 & V4: Veredelung
-            let v3Total = colorGrading ? 200 : 0;
-            let v4Total = captions ? 120 : 0;
+            let v3Total = colorGrading ? 120 : 0;
+            let v4Total = captions ? 80 : 0;
 
             // Kalkulation V5: Buyout
             let currentSubtotal = v1Total + v2Total + v3Total + v4Total;
@@ -161,8 +162,8 @@
 
             let finalPrice = currentSubtotal + v5Total;
 
-            // Text-Generierung (Freundlich & Respektvoll)
-            let text = `Hallo zusammen nach ${companyName},\n\nvielen Dank für das angenehme Gespräch und euer Vertrauen. Ich freue mich darauf, gemeinsam mit euch dieses Projekt umzusetzen.\n\nZiel ist die Produktion eines hochwertigen ${videoType}s, das eure Zielgruppe direkt anspricht und eure Botschaft professionell transportiert. Um euch volle Flexibilität und Transparenz zu bieten, habe ich das Projekt in fünf klare Etappen unterteilt:\n\n`;
+            // Text-Generierung
+            let text = `Hallo zusammen nach ${companyName},\n\nvielen Dank für das angenehme Gespräch und euer Vertrauen. Ich freue mich darauf, gemeinsam mit euch dieses Projekt umzusetzen.\n\nZiel ist die Produktion eines hochwertigen ${videoType}s, das eure Zielgruppe direkt anspricht und eure Botschaft professionell transportiert. Um euch volle Flexibilität und Transparenz zu bieten, habe ich das Projekt in klare Etappen unterteilt:\n\n`;
             
             text += `ETAPPE V1: PRODUKTION (VOR ORT)\n`;
             text += `- Geplanter Zeitaufwand am Set: ${shootHours} Std.\n`;
