@@ -80,9 +80,15 @@
                 <h3>Zeitkalkulation</h3>
                 <div class="grid-2">
                     <div class="form-group">
+                        <label>Beratung & Strategie (Std. à 50€):</label>
+                        <input type="number" id="consult_hours" step="0.5" value="1">
+                    </div>
+                    <div class="form-group">
                         <label>Geplante Drehdauer (Stunden):</label>
                         <input type="number" id="shoot_hours" step="0.5" value="1">
                     </div>
+                </div>
+                <div class="grid-2">
                     <div class="form-group">
                         <label>Post-Produktion (Stunden):</label>
                         <input type="number" id="edit_hours" step="0.5" value="4">
@@ -132,16 +138,20 @@
             const industryMultiplier = parseFloat(document.getElementById('industry').value);
             const videoType = document.getElementById('video_type').value;
             
-            const dailyRate = parseFloat(document.getElementById('daily_rate').value);
-            const hourlyRate = parseFloat(document.getElementById('hourly_rate').value);
+            const consultHours = parseFloat(document.getElementById('consult_hours').value);
             const shootHours = parseFloat(document.getElementById('shoot_hours').value);
             const editHours = parseFloat(document.getElementById('edit_hours').value);
+            const dailyRate = parseFloat(document.getElementById('daily_rate').value);
+            const hourlyRate = parseFloat(document.getElementById('hourly_rate').value);
 
             const twoCameras = document.getElementById('two_cameras').checked;
             const proLight = document.getElementById('pro_light').checked;
             const proAudio = document.getElementById('pro_audio').checked;
             const colorGrading = document.getElementById('color_grading').checked;
             const captions = document.getElementById('captions').checked;
+
+            // Kalkulation V0: Beratung
+            let v0Total = consultHours * 50;
 
             // Kalkulation V1: Produktion
             let v1Total = (shootHours >= 5) ? dailyRate : (shootHours * hourlyRate);
@@ -157,7 +167,7 @@
             let v4Total = captions ? 80 : 0;
 
             // Kalkulation V5: Buyout
-            let currentSubtotal = v1Total + v2Total + v3Total + v4Total;
+            let currentSubtotal = v0Total + v1Total + v2Total + v3Total + v4Total;
             let v5Total = (currentSubtotal * industryMultiplier) - currentSubtotal;
 
             let finalPrice = currentSubtotal + v5Total;
@@ -165,6 +175,13 @@
             // Text-Generierung
             let text = `Hallo zusammen nach ${companyName},\n\nvielen Dank für das angenehme Gespräch und euer Vertrauen. Ich freue mich darauf, gemeinsam mit euch dieses Projekt umzusetzen.\n\nZiel ist die Produktion eines hochwertigen ${videoType}s, das eure Zielgruppe direkt anspricht und eure Botschaft professionell transportiert. Um euch volle Flexibilität und Transparenz zu bieten, habe ich das Projekt in klare Etappen unterteilt:\n\n`;
             
+            if (v0Total > 0) {
+                text += `ETAPPE V0: BERATUNG & KONZEPTION\n`;
+                text += `- Strategische Planung, Vorgespräche und Konzeptentwicklung\n`;
+                text += `- Zeitaufwand: ca. ${consultHours} Std.\n`;
+                text += `>> Investition Etappe V0: ${v0Total.toFixed(2).replace('.', ',')} €\n\n`;
+            }
+
             text += `ETAPPE V1: PRODUKTION (VOR ORT)\n`;
             text += `- Geplanter Zeitaufwand am Set: ${shootHours} Std.\n`;
             if(twoCameras) text += `- Inkl. Multi-Kamera-Setup für dynamische Perspektiven\n`;
