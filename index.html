@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offer Generator - Timo Hoffmann Media</title>
+    <title>Angebots-Konfigurator - Timo Hoffmann Media</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
-        header { background-color: #1a1a1a; padding: 40px 20px; display: flex; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .logo-box { display: flex; flex-direction: column; text-decoration: none; color: #fff; font-family: 'Montserrat', sans-serif; align-items: center; }
-        .logo-box .name { font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; margin: 0; line-height: 1.1; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #1a1a1a; }
+        header { background-color: #1a1a1a; padding: 40px 20px; display: flex; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .logo-box { display: flex; flex-direction: column; text-decoration: none; color: #fff; align-items: center; }
+        .logo-box .name { font-weight: 900; font-size: 1.6rem; letter-spacing: 2px; margin: 0; line-height: 1.1; }
         .logo-box .sub { font-weight: 300; font-size: 0.8rem; letter-spacing: 12px; margin-top: 2px; margin-right: -12px; color: rgba(255,255,255,0.7); }
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .form-section, .result-section { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .result-section { display: none; border-left: 5px solid #28a745; }
-        h1, h2 { text-align: center; margin-bottom: 25px; }
-        h3 { color: #555; border-bottom: 2px solid #f4f4f9; padding-bottom: 5px; margin-top: 30px;}
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .checkbox-group { display: flex; align-items: center; margin-bottom: 10px; }
-        .checkbox-group input { margin-right: 10px; width: auto; }
-        button { background: #28a745; color: white; padding: 15px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1rem; font-weight: bold; width: 100%; transition: background 0.3s; margin-top: 20px; }
-        button:hover { background: #218838; }
-        #output-text { white-space: pre-wrap; background: #f9f9f9; padding: 20px; border-radius: 4px; border: 1px solid #ddd; font-family: monospace; font-size: 0.95rem; line-height: 1.5; }
-        .price-tag { font-size: 1.5rem; font-weight: bold; color: #28a745; text-align: center; margin: 20px 0; }
-        .info-hint { font-size: 0.8rem; color: #888; font-style: italic; margin-top: 2px; }
+        
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        .form-section, .result-section { background: #ffffff; padding: 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .result-section { display: none; border-top: 6px solid #1a1a1a; }
+        
+        h1, h2 { font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #1a1a1a; margin-bottom: 30px; text-align: center; }
+        h3 { font-weight: 900; font-size: 1rem; text-transform: uppercase; color: #555; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 35px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 0.85rem; text-transform: uppercase; color: #666; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: border 0.3s; }
+        input:focus { border-color: #1a1a1a; outline: none; }
+        
+        .checkbox-group { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; }
+        .checkbox-group input { margin-right: 12px; width: auto; cursor: pointer; }
+        .checkbox-group label { font-weight: 500; margin-bottom: 0; text-transform: none; color: #333; cursor: pointer; font-size: 0.95rem; }
+
+        button { background: #1a1a1a; color: white; padding: 18px 30px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 900; text-transform: uppercase; width: 100%; letter-spacing: 1px; transition: all 0.3s; margin-top: 25px; }
+        button:hover { background: #333; transform: translateY(-2px); }
+
+        #output-text { white-space: pre-wrap; background: #fff; padding: 25px; border-radius: 8px; border: 1px solid #eee; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; line-height: 1.6; color: #222; }
+        .price-tag { font-size: 1.8rem; font-weight: 900; color: #1a1a1a; text-align: center; margin: 25px 0; border-bottom: 2px solid #f4f4f4; padding-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -41,68 +48,77 @@
 
     <div class="container">
         <div class="form-section">
-            <h1>Angebot konfigurieren</h1>
+            <h1>Projekt-Konfiguration</h1>
             <form id="quote-form">
                 
-                <h3>Basis-Daten</h3>
+                <h3>Basis-Informationen</h3>
                 <div class="form-group">
-                    <label>Firma:</label>
-                    <input type="text" id="company_name" required placeholder="Z.B. Müller GmbH">
+                    <label>Partner / Unternehmen:</label>
+                    <input type="text" id="company_name" required placeholder="Name des Unternehmens">
                 </div>
 
                 <div class="grid-2">
                     <div class="form-group">
-                        <label>Tagessatz Dreh (€):</label>
-                        <input type="number" id="daily_rate" value="800">
+                        <label>Art des Projekts:</label>
+                        <select id="video_type">
+                            <option value="Social Media Reel">Social Media Reel</option>
+                            <option value="Recruiting-Format">Recruiting-Film</option>
+                            <option value="Image- / Business-Portrait">Imagefilm</option>
+                            <option value="Interview">Interview-Produktion</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Stundensatz (€):</label>
-                        <input type="number" id="hourly_rate" value="100">
+                        <label>Branche (Nutzungsrechte):</label>
+                        <select id="industry">
+                            <option value="1.0">KMU / Regional - 1.0x</option>
+                            <option value="1.3">Immobilien / Überregional - 1.3x</option>
+                            <option value="1.8">Industrie / Konzern - 1.8x</option>
+                        </select>
                     </div>
                 </div>
 
-                <h3>Zeitaufwand</h3>
+                <h3>Zeitkalkulation</h3>
                 <div class="grid-2">
                     <div class="form-group">
-                        <label>Drehdauer (Stunden):</label>
+                        <label>Geplante Drehdauer (Stunden):</label>
                         <input type="number" id="shoot_hours" step="0.5" value="1">
-                        <div class="info-hint">Ab 5 Std. wird automatisch der Tagessatz berechnet.</div>
                     </div>
                     <div class="form-group">
-                        <label>Schnitt (Stunden):</label>
+                        <label>Post-Produktion (Stunden):</label>
                         <input type="number" id="edit_hours" step="0.5" value="4">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Branche (Multiplikator):</label>
-                    <select id="industry">
-                        <option value="1.0">KMU (Regionale Nutzung) - 1.0x</option>
-                        <option value="1.3">Immobilien/Mittelstand - 1.3x</option>
-                        <option value="1.8">Industrie/Konzern - 1.8x</option>
-                    </select>
+                <div class="grid-2" style="display:none;"> <input type="number" id="daily_rate" value="850">
+                    <input type="number" id="hourly_rate" value="110">
                 </div>
 
-                <h3>Produktion (V1) & Post (V2)</h3>
+                <h3>V1 & V2: Produktion & Schnitt</h3>
                 <div class="grid-2">
                     <div>
-                        <div class="checkbox-group"><input type="checkbox" id="two_cameras"> <label>2-Kameras (+250€)</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="pro_light"> <label>Pro-Licht (+150€)</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="pro_audio"> <label>Pro-Audio (+100€)</label></div>
-                    </div>
-                    <div>
-                        <div class="checkbox-group"><input type="checkbox" id="color_grading"> <label>Color Grading (+200€)</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="captions"> <label>Captions (+120€)</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="two_cameras"> <label>2-Kamera-Setup (+250€)</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="pro_light"> <label>Kino-Licht-Setup (+150€)</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="pro_audio"> <label>High-End Audio (+100€)</label></div>
                     </div>
                 </div>
 
-                <button type="submit">Angebot berechnen</button>
+                <h3>V3 & V4: Veredelung (Optionale Etappen)</h3>
+                <div class="grid-2">
+                    <div>
+                        <div class="checkbox-group"><input type="checkbox" id="color_grading"> <label>Professionelles Color Grading (+200€)</label></div>
+                    </div>
+                    <div>
+                        <div class="checkbox-group"><input type="checkbox" id="captions"> <label>Optimierte Untertitel / Captions (+120€)</label></div>
+                    </div>
+                </div>
+
+                <button type="submit">Angebot individuell erstellen</button>
             </form>
         </div>
 
         <div class="result-section" id="result-section">
-            <h2>Dein modulares Angebot</h2>
-            <div class="price-tag">Gesamt-UVP: <span id="final-price">0</span> € (Netto)</div>
+            <h2>Dein erstelltes Angebot</h2>
+            <div class="price-tag">Investition: <span id="final-price">0</span> € (zzgl. MwSt.)</div>
             <div id="output-text"></div>
         </div>
     </div>
@@ -113,6 +129,7 @@
 
             const companyName = document.getElementById('company_name').value;
             const industryMultiplier = parseFloat(document.getElementById('industry').value);
+            const videoType = document.getElementById('video_type').value;
             
             const dailyRate = parseFloat(document.getElementById('daily_rate').value);
             const hourlyRate = parseFloat(document.getElementById('hourly_rate').value);
@@ -125,55 +142,63 @@
             const colorGrading = document.getElementById('color_grading').checked;
             const captions = document.getElementById('captions').checked;
 
-            // V1: Produktion Logik
-            let v1Total = 0;
-            let shootLabel = "";
-            if (shootHours >= 5) {
-                v1Total = dailyRate;
-                shootLabel = `Drehtag (Pauschale da >= 5 Std.)`;
-            } else {
-                v1Total = shootHours * hourlyRate;
-                shootLabel = `${shootHours} Std. Drehaufwand`;
-            }
+            // Kalkulation V1: Produktion
+            let v1Total = (shootHours >= 5) ? dailyRate : (shootHours * hourlyRate);
             if (twoCameras) v1Total += 250;
             if (proLight) v1Total += 150;
             if (proAudio) v1Total += 100;
 
-            // V2: Post-Produktion (Schnitt nach Stunden)
+            // Kalkulation V2: Schnitt
             let v2Total = editHours * hourlyRate;
-            if (colorGrading) v2Total += 200;
-            if (captions) v2Total += 120;
 
-            // V3: Buyout
-            let subTotal = v1Total + v2Total;
-            let v3Total = (subTotal * industryMultiplier) - subTotal;
-            let finalPrice = v1Total + v2Total + v3Total;
+            // Kalkulation V3 & V4: Veredelung
+            let v3Total = colorGrading ? 200 : 0;
+            let v4Total = captions ? 120 : 0;
 
-            let text = `Hallo Team von ${companyName},\n\nvielen Dank für das Interesse! Hier ist die modulare Kalkulation:\n\n`;
+            // Kalkulation V5: Buyout
+            let currentSubtotal = v1Total + v2Total + v3Total + v4Total;
+            let v5Total = (currentSubtotal * industryMultiplier) - currentSubtotal;
+
+            let finalPrice = currentSubtotal + v5Total;
+
+            // Text-Generierung (Freundlich & Respektvoll)
+            let text = `Hallo zusammen nach ${companyName},\n\nvielen Dank für das angenehme Gespräch und euer Vertrauen. Ich freue mich darauf, gemeinsam mit euch dieses Projekt umzusetzen.\n\nZiel ist die Produktion eines hochwertigen ${videoType}s, das eure Zielgruppe direkt anspricht und eure Botschaft professionell transportiert. Um euch volle Flexibilität und Transparenz zu bieten, habe ich das Projekt in fünf klare Etappen unterteilt:\n\n`;
             
-            text += `ETAPPE V1: PRODUKTION\n`;
-            text += `- ${shootLabel}\n`;
-            if(twoCameras) text += `- 2-Kamera-Setup\n`;
-            if(proLight) text += `- Erweitertes Licht-Setup\n`;
-            if(proAudio) text += `- High-End Audio\n`;
-            text += `>> Zwischensumme V1: ${v1Total.toFixed(2).replace('.', ',')} €\n\n`;
+            text += `ETAPPE V1: PRODUKTION (VOR ORT)\n`;
+            text += `- Geplanter Zeitaufwand am Set: ${shootHours} Std.\n`;
+            if(twoCameras) text += `- Inkl. Multi-Kamera-Setup für dynamische Perspektiven\n`;
+            if(proLight) text += `- Inkl. professioneller Lichtsetzung (Kino-Look)\n`;
+            if(proAudio) text += `- Inkl. High-End Audio-Aufnahme für maximale Klarheit\n`;
+            text += `>> Investition Etappe V1: ${v1Total.toFixed(2).replace('.', ',')} €\n\n`;
 
-            text += `ETAPPE V2: POST-PRODUKTION\n`;
-            text += `- ${editHours} Std. Schnitt & Post-Produktion\n`;
-            if(colorGrading) text += `- Color-Grading (Kino-Look)\n`;
-            if(captions) text += `- Untertitel / Captions\n`;
-            text += `>> Zwischensumme V2: ${v2Total.toFixed(2).replace('.', ',')} €\n\n`;
+            text += `ETAPPE V2: POST-PRODUKTION (DER SCHNITT)\n`;
+            text += `- Digitaler Schnitt, Storytelling und Rohfassung\n`;
+            text += `- Zeitaufwand in der Nachbearbeitung: ca. ${editHours} Std.\n`;
+            text += `>> Investition Etappe V2: ${v2Total.toFixed(2).replace('.', ',')} €\n\n`;
 
-            if (v3Total > 0) {
-                text += `ETAPPE V3: NUTZUNGSRECHTE (BUYOUT)\n`;
-                text += `- Erweiterte kommerzielle Nutzung (Faktor ${industryMultiplier})\n`;
-                text += `>> Zwischensumme V3: ${v3Total.toFixed(2).replace('.', ',')} €\n\n`;
+            if(colorGrading) {
+                text += `ETAPPE V3: COLOR GRADING (FINISHING)\n`;
+                text += `- Individuelle Farbanpassung und Look-Gestaltung für einen hochwertigen Bildeindruck.\n`;
+                text += `>> Investition Etappe V3: ${v3Total.toFixed(2).replace('.', ',')} €\n\n`;
+            }
+
+            if(captions) {
+                text += `ETAPPE V4: CAPTIONS (BARRIEREFREIHEIT)\n`;
+                text += `- Erstellung und Einbettung von Untertiteln für maximale Reichweite in Social Media.\n`;
+                text += `>> Investition Etappe V4: ${v4Total.toFixed(2).replace('.', ',')} €\n\n`;
+            }
+
+            if (v5Total > 0) {
+                text += `ETAPPE V5: NUTZUNGSRECHTE (TRANSFER)\n`;
+                text += `- Übertragung der zeitlich und räumlich unbegrenzten Nutzungsrechte für eure Branche.\n`;
+                text += `>> Investition Etappe V5: ${v5Total.toFixed(2).replace('.', ',')} €\n\n`;
             }
 
             text += `--------------------------------------------------\n`;
-            text += `GESAMTSUMME: ${finalPrice.toFixed(2).replace('.', ',')} € (Netto)\n`;
+            text += `GESAMTINVESTITION (NETTO): ${finalPrice.toFixed(2).replace('.', ',')} €\n`;
             text += `--------------------------------------------------\n\n`;
-            text += `Beste Grüße,\nTimo Hoffmann\nTIMO HOFFMANN MEDIA`;
+            
+            text += `In diesem Rahmen ist eine Korrekturschleife bereits enthalten, damit das Ergebnis exakt euren Vorstellungen entspricht.\n\nIch freue mich sehr auf unser gemeinsames Projekt!\n\nBeste Grüße,\n\nTimo Hoffmann\nTIMO HOFFMANN MEDIA`;
 
             document.getElementById('final-price').innerText = finalPrice.toFixed(2).replace('.', ',');
             document.getElementById('output-text').innerText = text;
